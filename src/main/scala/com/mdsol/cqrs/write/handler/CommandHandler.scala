@@ -23,19 +23,19 @@ class CtaCommandHandler extends Actor with ActorLogging {
     case _ =>
   }
 
-  private def handleUpdateCtaCommand(updateCtaCommand: UpdateCtaCommand): Unit = {
-    Thread.sleep(1000) // Forcing OptimisticLooking error
-    val ctaAggregateRoot = context
-      .actorOf(Props(new ClinicalTrialAgreement(updateCtaCommand.id)), updateCtaCommand.id.toString)
-    ctaAggregateRoot ! updateCtaCommand
-  }
-
   private def handleCreateCtaCommand(createCtaCommand: CreateCtaCommand): Unit = {
     //  Here - Superficial validation
     val ctaGeneratedGuid = UUID.randomUUID()
     val ctaAggregateRoot = context
       .actorOf(Props(new ClinicalTrialAgreement(ctaGeneratedGuid)), ctaGeneratedGuid.toString)
     ctaAggregateRoot ! createCtaCommand
+  }
+
+  private def handleUpdateCtaCommand(updateCtaCommand: UpdateCtaCommand): Unit = {
+    Thread.sleep(1000) // Forcing OptimisticLooking error
+    val ctaAggregateRoot = context
+      .actorOf(Props(new ClinicalTrialAgreement(updateCtaCommand.id)), updateCtaCommand.id.toString)
+    ctaAggregateRoot ! updateCtaCommand
   }
 
   private def handlerException(exception: String) = {
