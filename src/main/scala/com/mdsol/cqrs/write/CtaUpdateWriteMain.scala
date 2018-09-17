@@ -16,8 +16,8 @@ object CtaUpdateWriteMain extends App {
       "userUuid2",
       "txUuid2",
       "traceUuid2",
-      2, // Version for Stale state validation
-      "2fc40c5c-cf38-4b69-846c-a26ae8691394", // Cta Id - Aggregate Root Id
+      0, // Version for Stale state validation
+      "18267806-4595-413b-b674-99e0b0142441", // Cta Id - Aggregate Root Id
       "Cta Name CCC"
     )
   updateCta(updateCtaRequestDto1)
@@ -27,8 +27,8 @@ object CtaUpdateWriteMain extends App {
       "userUuid3",
       "txUuid3",
       "traceUuid3",
-      2, // Version for Stale state validation
-      "2fc40c5c-cf38-4b69-846c-a26ae8691394", // Cta Id - Aggregate Root Id
+      0, // Version for Stale state validation
+      "18267806-4595-413b-b674-99e0b0142441", // Cta Id - Aggregate Root Id
       "Cta Name DDD"
     )
   updateCta(updateCtaRequestDto2)

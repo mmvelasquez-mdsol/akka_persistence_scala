@@ -14,8 +14,10 @@ libraryDependencies ++= Seq(
   "com.typesafe.akka" %% "akka-actor" % akkaVersion,
   "com.typesafe.akka" %% "akka-testkit" % akkaVersion % Test,
   "com.typesafe.akka" %% "akka-persistence" % akkaVersion,
+  // Begin: Akka Persistence Plugin
   "com.okumin" %% "akka-persistence-sql-async" % "0.5.1",
   "com.github.mauricio" %% "mysql-async" % "0.2.21",
+  // End: Akka Persistence Plugin
   "org.scalatest" %% "scalatest" % "3.0.1",
   "org.mockito" % "mockito-all" % "1.10.19",
   "com.github.dnvriend" %% "akka-persistence-inmemory" % "2.5.1.1",

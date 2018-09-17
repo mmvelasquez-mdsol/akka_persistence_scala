@@ -1,10 +1,10 @@
 package com.mdsol.cqrs.write.aggregate
 
+import java.sql.SQLException
 import java.util.UUID
 
 import akka.actor.ActorLogging
 import akka.persistence.PersistentActor
-import com.github.mauricio.async.db.mysql.exceptions.MySQLException
 import com.mdsol.cqrs.write.exception.{OptimisticLockingException, StaleStateException}
 import com.mdsol.cqrs.write.message._
 
@@ -60,20 +60,20 @@ class ClinicalTrialAgreement(guid: UUID) extends PersistentActor with ActorLoggi
   override protected def onPersistFailure(cause: Throwable, event: Any, seqNr: Long): Unit = {
     super.onPersistFailure(cause, event, seqNr)
     cause match {
-      case dbException: MySQLException if dbException.getMessage.contains("Duplicate entry") =>
+      case dbException: SQLException if dbException.getMessage.contains("Duplicate entry") =>
         throw OptimisticLockingException(event.asInstanceOf[CtaUpdated].metadata) // It could be an event
       case _: Exception => throw cause
     }
   }
 
   private def handleEvent(event: DomainEvent): Unit = {
-    log.info(s"Command - ${event.toString}")
+    log.info(s"Apply Event -> ${event.toString}")
     currentState = event match {
       case _: CtaCreated => CurrentState()
       case ctaUpdated: CtaUpdated => currentState.updated(ctaUpdated)
       case _ => currentState
     }
-    log.info(s"Current State - ${currentState.toString}")
+    log.info(s"-> Current State - ${currentState.toString}")
   }
 
 }
