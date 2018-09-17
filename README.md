@@ -3,8 +3,11 @@ Akka Persistence with MySQL configured as Event Store.
  - Akka Persistence (Write): YES
  - Akka Persistence Query (Read): NO  
 
-Plugin Name: akka-persistence-sql-async
-Plugin URL: https://index.scala-lang.org/okumin/akka-persistence-sql-async/akka-persistence-sql-async/0.5.1
+Akka Persistence Plugin
+- Name: akka-persistence-sql-async
+- Version: 0.5.1 
+- URL: https://index.scala-lang.org/okumin/akka-persistence-sql-async/akka-persistence-sql-async/0.5.1
+- GitHub: https://github.com/okumin/akka-persistence-sql-async
 
 # Create Database
 ```
